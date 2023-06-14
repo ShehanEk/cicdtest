@@ -65,6 +65,45 @@ Resources:
           Properties:
             Path: /{id}
             Method: GET
+
+  testCICDFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      FunctionName: 'test-shehan-function'
+      Handler: src/handlers/test.testLayerFunction
+      Runtime: nodejs18.x
+      Events:
+        Api:
+          Type: Api
+          Properties:
+            Path: /cicd/test
+            Method: GET      
+    Metadata:
+      BuildMethod: esbuild
+      BuildProperties:
+        Minify: true
+        Target: 'es2020'
+        Sourcemap: tru
+          - src/handlers/test.ts
+          
+  # testGetFunction:
+  #   Type: AWS::Serverless::Function
+  #   Properties:
+  #     Handler: src/handlers/test.testLayerFunction
+  #     FunctionName: 'test-cicd-function'      
+  #     Runtime: nodejs18.x
+  #     Architectures:
+  #     - x86_64
+  #     MemorySize: 128
+  #     Timeout: 5
+  #     Description: A simple example includes a HTTP get method to get one item by
+  #       id from a DynamoDB table.
+  #     Events:
+  #       Api:
+  #         Type: Api
+  #         Properties:
+  #           Path: /test
+  #           Method: GET   
   # Each Lambda function is defined by properties:
   # https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#awsserverlessfunction
 
