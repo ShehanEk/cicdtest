@@ -5,7 +5,7 @@ export const testLayerFunction = async (
   event: APIGatewayProxyEvent
 ): Promise<APIGatewayProxyResult> => {
   try {
-    console.log("git here122");
+    console.log("git here12sss2");
     return responseHelper.sendSuccess(
       event,
       `Successfully retrieved job data.`
